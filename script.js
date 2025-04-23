@@ -1,5 +1,5 @@
 console.log("Hello World");
-
+/*
 function getComputerChoice () {
     let compChoiceString = "";
     // Returns a random integer from 1 to 3 (inclusive):
@@ -12,14 +12,19 @@ function getComputerChoice () {
     } else {
         compChoiceString = "scissors";
     }
-    
-    console.log(compChoiceString);
-
+        console.log("Computer Choice: " + compChoiceString);
     return (compChoiceString);
 }
+*/
 
-getComputerChoice();
+function getHumanChoice () {
+    let humanChoice = prompt("Enter 'rock,' 'paper,' or 'scissors.'");
+    console.log(humanChoice);
+    return humanChoice;
+}
 
+//getComputerChoice();
+getHumanChoice();
 
 /*
 function playRound(humanChoice, computerChoice) {
