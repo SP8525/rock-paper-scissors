@@ -25,25 +25,27 @@ function getHumanChoice () {
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
-    
+    let roundCount = 1;
+
     function playRound(humanSelection, computerSelection) {                    
         if (humanSelection === computerSelection) {
             console.log("Push! - No winner");
             console.log("Human Score: " + humanScore + " || Computer Score: " + computerScore);
-            roundCount--;
+            console.log("Repeat round");
         } else if ((humanSelection === "rock" && computerSelection === "scissors") || (humanSelection === "scissors" && computerSelection === "paper") || (humanSelection === "paper" && computerSelection === "rock")) {
             console.log("You win! " + humanSelection + " beats " + computerSelection);
             humanScore ++;
+            roundCount ++;
             console.log("Human Score: " + humanScore + " || Computer Score: " + computerScore);
         } else {
             console.log("Computer wins! " + computerSelection + " beats " + humanSelection);
             computerScore ++;
+            roundCount ++;
             console.log("Human Score: " + humanScore + " || Computer Score: " + computerScore);
         }
-        return(roundCount);
     }
 
-    for (let roundCount = 1; roundCount <= 5; roundCount++) {
+    while (roundCount <= 5) {
         console.log("Round " + roundCount);
         let humanSelection = getHumanChoice();
         humanSelection = humanSelection.toLowerCase();
@@ -58,8 +60,5 @@ function playGame() {
         console.log("Computer wins.")
     } 
 }
-
-//const humanSelection = getHumanChoice();
-//const computerSelection = getComputerChoice();
 
 playGame();
