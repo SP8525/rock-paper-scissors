@@ -45,14 +45,22 @@ function playGame() {
         }
     }
 
-    while (roundCount <= 5) {
-        console.log("Round " + roundCount);
-        let humanSelection = getHumanChoice();
-        humanSelection = humanSelection.toLowerCase();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    // while (roundCount <= 5) {
+    //     console.log("Round " + roundCount);
+    //     let humanSelection = getHumanChoice();
+    //     humanSelection = humanSelection.toLowerCase();
+    //     const computerSelection = getComputerChoice();
+    //     playRound(humanSelection, computerSelection);
+    // }
 
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach((button) => {
+        // and for each one we add a 'click' listener
+        button.addEventListener("click", () => {
+          alert(button.id);
+        });
+      });
 
     if (humanScore > computerScore) {
         console.log("You win the game!");
