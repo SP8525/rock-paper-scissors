@@ -1,4 +1,9 @@
 console.log("*** Rock, Paper, Scissors Game ***\n\n");
+const buttons = document.querySelectorAll("button");
+console.log(buttons);
+let humanScore = 0;
+let computerScore = 0;
+let roundCount = 1;
 
 function getComputerChoice () {
     let computerChoice = "";
@@ -16,57 +21,53 @@ function getComputerChoice () {
     return (computerChoice);
 }
 
-function getHumanChoice () {
-    let humanChoice = prompt("Enter 'rock,' 'paper,' or 'scissors.'");
-    console.log("Human Choice: " + humanChoice);
-    return humanChoice;
-}
-
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    let roundCount = 1;
-
-    function playRound(humanSelection, computerSelection) {                    
-        if (humanSelection === computerSelection) {
-            console.log("Push! - No winner");
-            console.log("Human Score: " + humanScore + " || Computer Score: " + computerScore);
-            console.log("Repeat round");
-        } else if ((humanSelection === "rock" && computerSelection === "scissors") || (humanSelection === "scissors" && computerSelection === "paper") || (humanSelection === "paper" && computerSelection === "rock")) {
-            console.log("You win! " + humanSelection + " beats " + computerSelection);
-            humanScore ++;
-            roundCount ++;
-            console.log("Human Score: " + humanScore + " || Computer Score: " + computerScore);
-        } else {
-            console.log("Computer wins! " + computerSelection + " beats " + humanSelection);
-            computerScore ++;
-            roundCount ++;
-            console.log("Human Score: " + humanScore + " || Computer Score: " + computerScore);
-        }
+function playRound(humanSelection, computerSelection) {                    
+    if (humanSelection === computerSelection) {
+        console.log("Push! - No winner");
+        console.log("Human Score: " + humanScore + " || Computer Score: " + computerScore);
+        console.log("Repeat round");
+    } else if (
+        (humanSelection === "rock" && computerSelection === "scissors")  ||
+        (humanSelection === "scissors" && computerSelection === "paper") ||
+        (humanSelection === "paper" && computerSelection === "rock")
+    ) {
+        console.log("You win! " + humanSelection + " beats " + computerSelection);
+        humanScore ++;
+        roundCount ++;
+        console.log("Human Score: " + humanScore + " --- Computer Score: " + computerScore);
+    } else {
+        console.log("Computer wins! " + computerSelection + " beats " + humanSelection);
+        computerScore ++;
+        roundCount ++;
+        console.log("Human Score: " + humanScore + " --- Computer Score: " + computerScore);
     }
-
-    // while (roundCount <= 5) {
-    //     console.log("Round " + roundCount);
-    //     let humanSelection = getHumanChoice();
-    //     humanSelection = humanSelection.toLowerCase();
-    //     const computerSelection = getComputerChoice();
-    //     playRound(humanSelection, computerSelection);
-    // }
-
-    const buttons = document.querySelectorAll("button");
+}
+    
+function playGame() {
+    console.log("Click any button to start the first round.");
 
     buttons.forEach((button) => {
-        // and for each one we add a 'click' listener
         button.addEventListener("click", () => {
-          alert(button.id);
-        });
-      });
+            if (roundCount > 5) return;
+            
+            console.log("Round: " + roundCount);
+            const humanSelection = button.id;
+            console.log("Human Choice:", humanSelection);
+            
+            const computerSelection = getComputerChoice();
 
-    if (humanScore > computerScore) {
-        console.log("You win the game!");
-    } else {
-        console.log("Computer wins.")
-    } 
+            playRound(humanSelection, computerSelection);
+
+            if (roundCount > 5) {
+                console.log(
+                    humanScore > computerScore
+                      ? "You win the game!"
+                      : "Computer wins."
+                  );                  
+            }
+        })
+    });
+
 }
 
 playGame();
